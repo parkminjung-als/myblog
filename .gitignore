@@ -1,0 +1,26 @@
+# Node.js 관련 파일
+frontend/node_modules/
+frontend/.env
+frontend/build/
+
+# Spring Boot 관련 파일
+backend/target/
+backend/.classpath
+backend/.project
+backend/.settings/
+backend/.env
+
+# OS 관련
+.DS_Store
+Thumbs.db
+
+# IDE 관련
+*.iml
+.idea/
+*.vscode/
+
+# 로그 파일
+*.log
+
+# 환경 파일
+*.env
