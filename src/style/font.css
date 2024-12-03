@@ -1,0 +1,62 @@
+@font-face {
+    font-family: 'Pretendard';
+    src: url("../fonts/Pretendard-Black.woff") format('woff');
+    font-weight: normal;
+    font-style: Black;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url("../fonts/Pretendard-Bold.woff") format('woff');
+    font-weight: normal;
+    font-style: Bold;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url("../fonts/Pretendard-ExtraBold.woff") format('woff');
+    font-weight: normal;
+    font-style: ExtraBold;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url("../fonts/Pretendard-ExtraLight.woff") format('woff');
+    font-weight: normal;
+    font-style: ExtraLight;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url("../fonts/Pretendard-Light.woff") format('woff');
+    font-weight: normal;
+    font-style: Light;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url("../fonts/Pretendard-Medium.woff") format('woff');
+    font-weight: normal;
+    font-style: Medium;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url("../fonts/Pretendard-Regular.woff") format('woff');
+    font-weight: normal;
+    font-style: Regular;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url("../fonts/Pretendard-SemiBold.woff") format('woff');
+    font-weight: normal;
+    font-style: SemiBold;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url("../fonts/Pretendard-Thin.woff") format('woff');
+    font-weight: normal;
+    font-style: Thin;
+}
+
+@font-face {
+    font-family: 'STUNNING-Bd';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2410-2@1.0/STUNNING-Bd.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}

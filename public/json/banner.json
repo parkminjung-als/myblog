@@ -1,0 +1,29 @@
+{
+    "texts" : [
+        [
+            {"content" : "how", "delay" : 1000},
+            {"content" : "to", "delay" : 1000},
+            {"content" : "hey", "delay" : 1000}
+        ],
+        [
+            {"content" : "ohhhh", "delay" : 1000},
+            {"content" : "hello", "delay" : 1000},
+            {"content" : "hi", "delay" : 1000}
+        ],
+        [
+            {"content" : "welcome", "delay" : 1000},
+            {"content" : "to", "delay" : 1000},
+            {"content" : "my", "delay" : 1000}
+        ],
+        [
+            {"content" : "blogs", "delay" : 1000},
+            {"content" : "have", "delay" : 1000},
+            {"content" : "a", "delay" : 1000}
+        ],
+        [    
+            {"content" : "nice", "delay" : 1000},
+            {"content" : "day", "delay" : 1000},
+            {"content" : "bey", "delay" : 1000}
+        ]
+    ]
+}
