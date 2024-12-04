@@ -1,4 +1,4 @@
-import React, {useState}from 'react'
+import React, {useState, useEffect}from 'react'
 import {Link} from 'react-router-dom'
 import{ Container, Nav, Navbar, NavDropdown} from 'react-bootstrap';
 import Search from '../components/Search';
@@ -7,9 +7,26 @@ const Top = () => {
     const [showDropdown, setShowDropdown] = useState(false);
     const handleMouseEnter = () => setShowDropdown(true);
     const handleMouseLeave = () => setShowDropdown(false);
+
+    const [isScrolled, setIsScrolled] = useState(false);
+    const handleScroll = () => {
+      if(window.scrollY > 10){
+        setIsScrolled(true);
+      }else{
+        setIsScrolled(false);
+      }
+    }
+  
+    useEffect(()=>{
+      window.addEventListener("scroll", handleScroll);
+      return () =>{
+        window.addEventListener("scroll", handleScroll);
+      }
+    }, []);
+
   return (
-    <header className="navigation">
-        <Navbar expand="lg" className="bg-white-transparent">
+    <header className={`navigation ${isScrolled ? "scrolled" : ""}`}>
+        <Navbar expand="lg" className="bg-transparent">
             <Container>
                 <Navbar.Brand as={Link} to="/"><img src="./images/logo.svg" className="img-logo" /></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -35,7 +52,7 @@ const Top = () => {
                     </NavDropdown.Item>
                     </NavDropdown>
                     <Nav.Link as={Link} to="about">about</Nav.Link>
-                    <Nav.Link as={Link} to="github">mygithub</Nav.Link>
+                    <Nav.Link as={Link} to="git">mygithub</Nav.Link>
                     <Nav.Link as={Link} to="contact">contact</Nav.Link>
                 </Nav>
                 </Navbar.Collapse>
