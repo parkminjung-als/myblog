@@ -1,6 +1,6 @@
 @import url(font.css);
-@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&family=Noto+Sans+KR:wght@100..900&family=Permanent+Marker&family=Playwrite+DE+Grund:wght@100..400&family=Shadows+Into+Light&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&family=Noto+Sans+KR:wght@100..900&family=Permanent+Marker&family=Playwrite+DE+Grund:wght@100..400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Shadows+Into+Light&display=swap');
 body{
     font-family: "Noto Sans KR", sans-serif;
     font-size: 16px;
@@ -9,7 +9,7 @@ body{
     margin-top: 100px;
 }
 h1,h2,h3,h4,h5,h6{
-    font-family: "Noto Sans KR", sans-serif;
+    font-family: STUNNING-Bd, sans-serif;
 }
 a, a:link, a:hover{
     text-decoration: none;
@@ -129,6 +129,7 @@ a, a:link{
     font-weight: 700;
     color: #fff;
     display: inline-block;
+    margin-left:50px;
 }
 
 /************about************/
@@ -143,7 +144,7 @@ img.about{
     z-index: 2;
 }
 .gray-box{
-    background-color: #ededed;
+    background-color: #ebebeb;
     height: 340px;
     width: 100%;
     position: absolute;
@@ -154,13 +155,12 @@ img.about{
 .text-box{
     position: absolute;
     top: 55px;
-    left: 60px;
+    left: 100px;
     z-index: 3;
 }
 .about-box h1{
     font-family: "Noto Sans KR", sans-serif;
     font-size: 5.5em;
-    width: 400px;
     font-weight: 900;
     letter-spacing: -5px;
     line-height: 1;
@@ -174,15 +174,15 @@ img.about{
     padding-top: 30px;
 }
 .about-me{
-    margin-left: 80px;
-    margin-right: 30px;
+    margin-left: auto;
+    margin-right: auto;
     column-count: 2;
     column-gap: 30px;
 }
-.about-p{
+.about-me p{
     line-height: 1.7;
 }
-.about-me p::first-letter{
+.about-me p:first-child:first-letter{
     font-size: 45px;
     font-weight: bold;
 }
@@ -191,13 +191,13 @@ img.about{
 }
 .follow-us{
     list-style-type: none;
-    margin-top: 80px;
+    margin-top: 90px;
     position: absolute;
     bottom: 10px;
     width: 200px;
 }
 .follow-us li{
-    padding: 10px 50px;
+    padding: 10px 30px;
     border-bottom: 1px solid #999;
 }
 .progress-box{
@@ -211,7 +211,7 @@ img.about{
     font-weight: bold;
 }
 .progress{
-    height: 15px;
+    height: 18px;
     background: transparent;
     border-radius: 0;
     box-shadow: none;
@@ -226,12 +226,128 @@ img.about{
 }
 .progress .progress-value{
     position: absolute;
-    color: #333;
+    color: #000;
     z-index: 99;
     top: 2px;
     right: 5px;
     font-size: 10px;
 }
+a.repobox{
+    display: block;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.02);
+    border-radius: 10px;
+    padding: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 200px;
+    margin: 30px;
+    transition: all 300ms;
+}
+.repobox:hover{
+    box-shadow: 0 0 15px 0 rgba(0,0,0,0.02);
+    font-size: 1.3em;
+}
+
+/****************Contact***************/
+::-webkit-input-placeholder{ /*크롬*/
+    color: #999 !important;
+}
+::-moz-placeholder{ /*파이어폭스, 사파리*/
+    color: #999 !important;
+}
+:-ms-input-placeholder{
+    color: #999 !important;
+}
+:-moz-placeholder{ /*파이어폭스 v18이하 */
+    color: #999 !important;
+}
+.input-name{
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="silver"><path d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z"></path></svg>');
+}
+.input-email{
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="silver"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM12.0606 11.6829L5.64722 6.2377L4.35278 7.7623L12.0731 14.3171L19.6544 7.75616L18.3456 6.24384L12.0606 11.6829Z"></path></svg>');
+}
+.input-name, .input-email{    
+    background-color: #fff;
+    background-size: 18px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    padding-left: 30px;
+}
+.input-name:focus, .input-email:focus{
+    background-image: none;
+    background-position: -10px center;
+    padding-left: 10px;
+}
+.contact-box{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-size:8.25em;    
+    position:relative;
+ }
+ .box1, .box2, .box3 {
+     position:absolute;
+     z-index:-1;
+     height:30px;
+ }
+ .box1{
+     width:30px;
+     background:#ddd;
+     border-radius:50%;
+     top:50px;
+     left:0;
+ }
+ .box2{
+     width:30px;
+     background:#ddd;
+     border-radius:50%;
+     top:50px;
+     left:40px;
+ }
+ .box3{
+     width:150px;
+     background:#ddd;
+     border-radius:25px;
+     top:50px;
+     left:80px;
+ }
+ .box4, .box5, .box6{
+     position:absolute;
+     z-index:-1;
+     height:30px;
+     bottom: 50px;
+ }
+ .box4{
+     width:30px;
+     background:#ddd;
+     border-radius:50%;
+     right:50px;
+ }
+ .box5{
+     width:30px;
+     background:#ddd;
+     border-radius:50%;
+     right:90px;
+ }
+ .box6{
+     width:150px;
+     background:#ddd;
+     border-radius:25px;
+     right:130px;
+ }
+ @keyframes animate-pos {
+     0%{ width: 0%; }
+ }
+ 
+ @media screen and (max-width: 728px) {
+     .typeanimation{
+         font-size: 1.8em;
+         font-weight: 700; 
+     }
+ } 
+     
 @keyframes animate-pos{
     0%{ width: 0%;}
 }

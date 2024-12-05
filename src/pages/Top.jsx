@@ -30,7 +30,7 @@ const Top = () => {
             <Container>
                 <Navbar.Brand as={Link} to="/"><img src="./images/logo.svg" className="img-logo" /></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
+                <Navbar.Collapse id="basic-navbar-nav" className="m-auto">
                 <Nav className="me-md-5 me-auto">
                 <Search />
                 <NavDropdown 
