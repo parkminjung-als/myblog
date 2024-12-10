@@ -10,6 +10,8 @@ import Layout from './pages/Layout';
 import Main from './pages/Main';
 import Post from './pages/Post';
 import Git from './pages/Git'
+// 관리자
+import PostWrite from './pages/admin/PostWrite';
 const App = () => {
   return (
     <>
@@ -42,6 +44,8 @@ const App = () => {
             <Route path="about" element={<About />} />
             <Route path="git" element={<Git />} />
             <Route path="contact" element={<Contact />} />
+
+            <Route path="adminWrite" element={<PostWrite/>} />
           </Route>
       </Routes>
     </Router>
