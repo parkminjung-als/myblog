@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap'
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
 import axios from 'axios';
 
-const PostWrite = () => {
+import Wysiwyg from '../../components/write/Wysiwyg';
+import FileUploadService from '../../components/write/FileUploadService';
 
-  const quillRef = useRef(null);
+const PostWrite = () => {
+  
   const navigate = useNavigate();
   const [ categories, setCategories] = useState([]);
   const [ post, setPost ] = useState('');
@@ -42,86 +42,9 @@ const PostWrite = () => {
   const handleTitle = (e) => {
       setPostTitle(e.target.value);
   }
-  //Quill 내용 변경
-  const handleContent = (e) => {
-      setPostContent(e.target.value);
-  }
 
-  const handleFileChange = async (e) => {
-   const files = Array.form(e.target.files);
-   if(files.length === 0) return;
-   try{
-      const formData = new FormData();
-      files.forEach((file)=>{
-         formData.append("files", file); //파일 배열로 저장
-      });
-      //ntime도 같이 전송
-      formData.append('ntime', ntime);
-
-      //파일 업로드 요청
-      const response = await axios.post(`api/posts/${ntime}/files`, formData,{
-         headers : {"Content-Type":"multipart/form-data"}
-      });
-
-   }catch(error){
-      console.error('파일 업로들 실패 : ', error);
-      alert("파일 업로드 중 오류가 발생했습니다.");
-   }
-  }
-
-  const handleFileUpload = async() => {
-   const inputFile = document.createElement("input");
-   inputFile.setAttribute("type", "file");
-   inputFile.setAttribute("accept", "image/*");
-   inputFile.click();
-
-   inputFile.addEventListener("change", async()=>{
-      const file = inputFile.files?.[0];
-      if(!file) return; //파일 선택이 없을 경우 함수 빠져나가기
-      try{
-         //1. formDate생성
-         const formData = new FormData();
-         formData.append("file", file);
-         formData.append('ntime', ntime);
-
-         //2. 서버로 이미지 업로드
-         const response = await axios.post(`api/posts/${ntime}/files`, formData,{
-            headers : {"Content-Type":"multipart/form-data"}
-         });
-         //3. 반환된 이미지 URL 가져오기
-         const imageUrl = response.data.url;
-
-         //4. Quill에 이미지 삽입
-         const editor = quillRef.current.getEditor();
-         const range = editor.getSelection();
-         editor.insertEmbed(range.index, "image", imageUrl);
-
-      }catch(error){
-         console.error("이미지 업로드 중 오류 발생 :", error);
-         alert("이미지 업로드 중 오류가 발생했습니다.");
-      }
-   });
-  }
-  //Quill디자인
-  const modules = useMemo(()=>{
-   return {
-      toolbar: {
-         container: [
-            [{header: [1, 2, false]}],
-            ['bold', 'italic', 'underline', 'strike'],
-            [{list: 'ordered'}], [{list:'bullet'}],
-            ['link', 'image'],
-            ['clean']
-         ],
-         handler:{
-            image:handleFileUpload
-            }
-         }
-      }
-   },[]);
-
-
- //빈 값 확인
+ 
+  //빈 값 확인
   const isEmptyValue = (val) => {
    return (
       val === null || 
@@ -186,30 +109,33 @@ const PostWrite = () => {
   }, []);
 
   //폼 제출
-  const handleSubmit = async (e) =>{
-   e.preventDefault();
-   if(!post || !selectedCategory || !postTitle || !postContent){
-      alert("모든 필드를 입력해 주세요.");
-      return;
-   }
-   
-   const formData = new FormData();
-   formData.append('post', post);
-   formData.append('category_id', selectedCategory);
-   formData.append('title', postTitle);
-   formData.append('content', postContent);
-   formData.append('hashtags', hashTags.join(','));
-   formData.append('ntime', ntime);
+  const handleSubmit = async (e) => {
+     e.preventDefault();
+     if(!post || !selectedCategory || !postTitle || !postContent) {
+        alert("모든 필드를 입력해 주세요");
+        return;
+     }
 
-   try{
-      await axios.post('/api/posts', formData);
-      alert("정상저으로 저장되었습니다.");
-      navigate(`/api/posts/${post}`);
-   }catch(error){
-      console.error('에러가 발생했습니다.', error);
-      alert("포스트 저장 중 오류가 발생했습니다.");
-   }
-   
+     const formData = new FormData();
+     formData.append('post', post);
+     formData.append('category', selectedCategory);
+     formData.append('title', postTitle);
+     formData.append('content', postContent);
+     formData.append('hashtag', hashTags.join(','));
+     formData.append('ntime', ntime);
+
+     try{
+        await axios.post('http://localhost:8080/api/posts', formData, {
+            headers : {
+               'Content-Type' : 'application/json'
+            }
+        });
+        alert("정상적으로 저장 되었습니다.");
+        navigate(`/api/posts/${post}`);
+     }catch(error){
+        console.error('에러가 발생했습니다.', error);
+        alert("포스트 저장 중 오류가 발생했습니다.");
+     }
   }
 
   return (
@@ -256,12 +182,10 @@ const PostWrite = () => {
         </Col>  
         <Col md='2' className="mt-3 text-end">내용</Col>
         <Col md="10" className="mt-3">
-             <ReactQuill
-               ref={quillRef}
-               theme="snow"
-               modules={modules}
-               value={postContent}
-               onChange={handleContent} />
+           <Wysiwyg content={postContent}
+                    setContent={setPostContent}
+                    ntime = { ntime }
+           />         
         </Col>
         <Col md="2" className="mt-3 text-end">해시태그</Col>
         <Col md="10" className="mt-3">
@@ -287,9 +211,11 @@ const PostWrite = () => {
         </Col>    
         <Col md="2" className="mt-3 text-end">파일업로드</Col>
         <Col md="10" className="mt-3">
-            <input type="file" name="file" className='form-control' multiple 
-               onChange={handleFileChange}
-            />
+            <FileUploadService nitime={ntime} 
+                               onFileUploadComp = {(urls)=>{
+                                  console.log('파일경로 : ', urls);
+                               }}
+            />                   
         </Col>       
       </Row>
       <div className="text-center mt-5">
