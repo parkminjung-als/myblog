@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {Container, Row, Col, Tab, Tabs} from 'react-bootstrap'
-import axios from 'axios'
+import api from '../components/git'
 
 const Git = () => {
     const [repo, setRepo] = useState([]);
@@ -13,8 +13,9 @@ const Git = () => {
         setLoading(true);
         setError(null);
         try{
-            const res = await axios.get("https://api.github.com/users/parkminjung-als/repos");
-            console.dir(res.data);
+            const res = await api.get('/users/vMinJungPark/repos');
+            //const res = await axios.get("https://api.github.com/users/parkminjung-als/repos");
+            //console.dir(res.data);
             setRepo(res.data);
 
             //언어 목록 추출
@@ -42,16 +43,16 @@ const Git = () => {
                             <Tab eventKey={"all"} title="all">
                                 <Row className="pt-5">
                                     <Col md="3">
-                                        <div class="repobox">dsf</div>
+                                        <div className="repobox">dsf</div>
                                     </Col>
                                     <Col md="3">
-                                        <div class="repobox">dsf</div>
+                                        <div className="repobox">dsf</div>
                                     </Col>
                                     <Col md="3">
-                                        <div class="repobox">dsf</div>
+                                        <div className="repobox">dsf</div>
                                     </Col>
                                     <Col md="3">
-                                        <div class="repobox">dsf</div>
+                                        <div className="repobox">dsf</div>
                                     </Col>
                                 </Row>
                             </Tab>
