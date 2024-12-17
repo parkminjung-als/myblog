@@ -16,7 +16,7 @@ const FileUploadService = ({ ntime, onFileUploadComp }) => {
            formData.append('ntime', ntime);
    
            //파일 업로드 요청
-           const response = await axios.post(`api/posts/${ntime}/files`, formData, {
+           const response = await axios.post(`api/posts/files`, formData, {
                  headers : { "Content-Type" : "multipart/form-data"}
            });
           
